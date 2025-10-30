@@ -27,3 +27,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.praktikum4.R
+
+@Composable
+fun FormDataDiri(modifier: Modifier = Modifier
+){
+
+}
