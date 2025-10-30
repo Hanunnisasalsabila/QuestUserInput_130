@@ -28,6 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.praktikum4.R
 
+
 @Composable
 fun FormDataDiri(modifier: Modifier = Modifier
 ){
@@ -78,6 +79,7 @@ fun FormDataDiri(modifier: Modifier = Modifier
                 textAlamat = it
             }
         )
+
         HorizontalDivider(
             modifier = Modifier.padding(
                 bottom = dimensionResource(R.dimen.padding_medium),
@@ -98,6 +100,7 @@ fun FormDataDiri(modifier: Modifier = Modifier
         ){
             Text(stringResource( R.string.submit))
         }
+
         HorizontalDivider(
             modifier = Modifier
                 .padding(bottom = dimensionResource(R.dimen.padding_medium),
@@ -107,6 +110,7 @@ fun FormDataDiri(modifier: Modifier = Modifier
             thickness = dimensionResource(R.dimen.divider_tipis),
             color = Color.DarkGray
         )
+
         ElevatedCard (
             elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
             colors = CardDefaults.cardColors(containerColor = Color.Black),
@@ -124,5 +128,4 @@ fun FormDataDiri(modifier: Modifier = Modifier
             }
         }
     }
-
 }
