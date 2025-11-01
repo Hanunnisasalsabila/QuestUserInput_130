@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
@@ -32,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -212,6 +214,33 @@ fun FormFormulirPendaftaran() {
                         onValueChange = {
                             textAlamat = it
                         }
+                    )
+                }
+                Button(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 24.dp)
+                        .height(50.dp),
+                    enabled = textNama.isNotEmpty() && textJK.isNotEmpty() &&
+                            textStatus.isNotEmpty() && textAlamat.isNotEmpty(),
+                    onClick = {
+                        nama = textNama
+                        jenis = textJK
+                        status = textStatus
+                        alamat = textAlamat
+                        showDialog = true // Tampilkan pop-up
+                    },
+                    shape = RoundedCornerShape(25.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = purpleButton,
+                        disabledContainerColor = purpleButton.copy(alpha = 0.5f)
+                    )
+                ) {
+                    Text(
+                        text = stringResource(R.string.submit), // Tetap pakai string resource
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
                     )
                 }
             }
