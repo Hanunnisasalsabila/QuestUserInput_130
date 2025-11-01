@@ -203,6 +203,16 @@ fun FormFormulirPendaftaran() {
                     }
 
                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
+                    OutlinedTextField(
+                        value = textAlamat,
+                        singleLine = true,
+                        shape = MaterialTheme.shapes.large,
+                        modifier = Modifier.fillMaxWidth(),
+                        label = { Text(text = "Alamat") },
+                        onValueChange = {
+                            textAlamat = it
+                        }
+                    )
                 }
             }
         }
