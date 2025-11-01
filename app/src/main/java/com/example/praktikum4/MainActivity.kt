@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.praktikum4.ui.theme.FormDataDiri
+import com.example.praktikum4.ui.theme.FormFormulirPendaftaran
 import com.example.praktikum4.ui.theme.Praktikum4Theme
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Praktikum4Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    FormDataDiri(
+                    FormFormulirPendaftaran(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
