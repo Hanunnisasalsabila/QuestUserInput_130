@@ -5,7 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun FormFormulirPendaftaran() {
@@ -23,5 +23,9 @@ fun FormFormulirPendaftaran() {
 
     val gender: List<String> = listOf("Laki-laki", "Perempuan")
     val statusOptions: List<String> = listOf("Janda", "Lajang", "Duda")
+
+    val purpleBackground = Color(0xFFE6D5F5)
+    val purpleButton = Color(0xFF7C3AED)
+    val purpleHeader = Color(0xFFB794F6)
 
 }
