@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Text
@@ -55,6 +57,38 @@ fun FormFormulirPendaftaran() {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        if (showDialog) {
+            AlertDialog(
+                onDismissRequest = {
+                    showDialog = false
+                    textNama = ""
+                    textJK = ""
+                    textStatus = ""
+                    textAlamat = ""
+                },
+                text = {
+                    Column {
+                        Text(text = "Nama   : $nama")
+                        Text(text = "Gender : $jenis")
+                        Text(text = "Status : $status")
+                        Text(text = "Alamat : $alamat")
+                    }
+                },
+                confirmButton = {
+                    Button(
+                        onClick = {
+                            showDialog = false
+                            textNama = ""
+                            textJK = ""
+                            textStatus = ""
+                            textAlamat = ""
+                        }
+                    ) {
+                        Text("OK")
+                    }
+                }
+            )
+        }
 
     }
     ElevatedCard(
