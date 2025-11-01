@@ -1,5 +1,6 @@
 package com.example.praktikum4.ui.theme
 
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -40,22 +41,28 @@ import androidx.compose.ui.unit.sp
 import com.example.praktikum4.R
 
 @Composable
-fun FormFormulirPendaftaran() {
+fun FormFormulirPendaftaran(modifier: Modifier = Modifier
+){
+    // State untuk input
     var textNama by remember { mutableStateOf("") }
     var textAlamat by remember { mutableStateOf("") }
     var textJK by remember { mutableStateOf("") }
     var textStatus by remember { mutableStateOf("") }
 
+    // State untuk data yang disubmit
     var nama by remember { mutableStateOf("") }
     var alamat by remember { mutableStateOf("") }
     var jenis by remember { mutableStateOf("") }
     var status by remember { mutableStateOf("") }
 
+    // State baru untuk kontrol Dialog
     var showDialog by remember { mutableStateOf(false) }
 
+    // List pilihan
     val gender: List<String> = listOf("Laki-laki", "Perempuan")
     val statusOptions: List<String> = listOf("Janda", "Lajang", "Duda")
 
+    // WARNA
     val purpleBackground = Color(0xFFE6D5F5)
     val purpleButton = Color(0xFF7C3AED)
     val purpleHeader = Color(0xFFB794F6)
@@ -68,6 +75,8 @@ fun FormFormulirPendaftaran() {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        // --- Logika untuk menampilkan AlertDialog ---
         if (showDialog) {
             AlertDialog(
                 onDismissRequest = {
@@ -100,148 +109,160 @@ fun FormFormulirPendaftaran() {
                 }
             )
         }
-    }
-    ElevatedCard(
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight(),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxHeight()
+
+        // Kartu untuk membungkus form
+        ElevatedCard(
+            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(),
+            colors = CardDefaults.cardColors(containerColor = Color.White)
         ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(
-                        purpleHeader,
-                        shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
-                    ),
-                contentAlignment = Alignment.Center
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxHeight()
             ) {
-                Text(
-                    text = "Formulir Pendaftaran",
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White,
-                    modifier = Modifier.padding(vertical = dimensionResource(R.dimen.padding_medium))
-                )
-            }
-            Column (
-                modifier = Modifier
-                    .padding(dimensionResource(R.dimen.padding_small))
-                    .fillMaxHeight()
-            ) {
-                Column(
-                    modifier = Modifier
-                        .weight(1f)
-                        .verticalScroll(rememberScrollState()),
-                ) {
-                    OutlinedTextField(
-                        value = textNama,
-                        singleLine = true,
-                        shape = MaterialTheme.shapes.large,
-                        modifier = Modifier.fillMaxWidth(),
-                        label = { Text(text = "Nama Lengkap") },
-                        onValueChange = {
-                            textNama = it
-                        }
-                    )
-                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
-
-                    Column {
-                        Text(
-                            text = "Jenis Kelamin",
-                            style = MaterialTheme.typography.bodyLarge
-                        )
-                        gender.forEach { item ->
-                            Row(
-                                modifier = Modifier
-                                    .selectable(
-                                        selected = textJK == item,
-                                        onClick = { textJK = item }
-                                    )
-                                    .fillMaxWidth(),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                RadioButton(
-                                    selected = textJK == item,
-                                    onClick = {
-                                        textJK = item
-                                    }
-                                )
-                                Text(item)
-                            }
-                        }
-                    }
-                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
-
-                    Column {
-                        Text(
-                            text = "Status Perkawinan",
-                            style = MaterialTheme.typography.bodyLarge
-                        )
-                        statusOptions.forEach { item ->
-                            Row(
-                                modifier = Modifier
-                                    .selectable(
-                                        selected = textStatus == item,
-                                        onClick = { textStatus = item }
-                                    )
-                                    .fillMaxWidth(),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                RadioButton(
-                                    selected = textStatus == item,
-                                    onClick = {
-                                        textStatus = item
-                                    }
-                                )
-                                Text(item)
-                            }
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
-                    OutlinedTextField(
-                        value = textAlamat,
-                        singleLine = true,
-                        shape = MaterialTheme.shapes.large,
-                        modifier = Modifier.fillMaxWidth(),
-                        label = { Text(text = "Alamat") },
-                        onValueChange = {
-                            textAlamat = it
-                        }
-                    )
-                }
-                Button(
+                // Judul Formulir dengan background warna
+                Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 24.dp)
-                        .height(50.dp),
-                    enabled = textNama.isNotEmpty() && textJK.isNotEmpty() &&
-                            textStatus.isNotEmpty() && textAlamat.isNotEmpty(),
-                    onClick = {
-                        nama = textNama
-                        jenis = textJK
-                        status = textStatus
-                        alamat = textAlamat
-                        showDialog = true // Tampilkan pop-up
-                    },
-                    shape = RoundedCornerShape(25.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = purpleButton,
-                        disabledContainerColor = purpleButton.copy(alpha = 0.5f)
-                    )
+                        .background(
+                            purpleHeader,
+                            shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
+                        ),
+                    contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = stringResource(R.string.submit), // Tetap pakai string resource
-                        fontSize = 16.sp,
+                        text = "Formulir Pendaftaran",
+                        fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White
+                        color = Color.White,
+                        modifier = Modifier.padding(vertical = dimensionResource(R.dimen.padding_medium))
                     )
+                }
+
+                // Isi Form
+                Column (
+                    modifier = Modifier
+                        .padding(dimensionResource(R.dimen.padding_small))
+                        .fillMaxHeight()
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .verticalScroll(rememberScrollState()),
+                    ) {
+                        // Nama Lengkap
+                        OutlinedTextField(
+                            value = textNama,
+                            singleLine = true,
+                            shape = MaterialTheme.shapes.large,
+                            modifier = Modifier.fillMaxWidth(),
+                            label = { Text(text = "Nama Lengkap") },
+                            onValueChange = {
+                                textNama = it
+                            }
+                        )
+
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
+
+                        // Jenis Kelamin
+                        Column {
+                            Text(
+                                text = "Jenis Kelamin",
+                                style = MaterialTheme.typography.bodyLarge
+                            )
+                            gender.forEach { item ->
+                                Row(
+                                    modifier = Modifier
+                                        .selectable(
+                                            selected = textJK == item,
+                                            onClick = { textJK = item }
+                                        )
+                                        .fillMaxWidth(),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    RadioButton(
+                                        selected = textJK == item,
+                                        onClick = {
+                                            textJK = item
+                                        }
+                                    )
+                                    Text(item)
+                                }
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
+
+                        // Status Perkawinan
+                        Column {
+                            Text(
+                                text = "Status Perkawinan",
+                                style = MaterialTheme.typography.bodyLarge
+                            )
+                            statusOptions.forEach { item ->
+                                Row(
+                                    modifier = Modifier
+                                        .selectable(
+                                            selected = textStatus == item,
+                                            onClick = { textStatus = item }
+                                        )
+                                        .fillMaxWidth(),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    RadioButton(
+                                        selected = textStatus == item,
+                                        onClick = {
+                                            textStatus = item
+                                        }
+                                    )
+                                    Text(item)
+                                }
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
+
+                        // Alamat
+                        OutlinedTextField(
+                            value = textAlamat,
+                            singleLine = true,
+                            shape = MaterialTheme.shapes.large,
+                            modifier = Modifier.fillMaxWidth(),
+                            label = { Text(text = "Alamat") },
+                            onValueChange = {
+                                textAlamat = it
+                            }
+                        )
+                    }
+                    Button(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 24.dp)
+                            .height(50.dp),
+                        enabled = textNama.isNotEmpty() && textJK.isNotEmpty() &&
+                                textStatus.isNotEmpty() && textAlamat.isNotEmpty(),
+                        onClick = {
+                            nama = textNama
+                            jenis = textJK
+                            status = textStatus
+                            alamat = textAlamat
+                            showDialog = true // Tampilkan pop-up
+                        },
+                        shape = RoundedCornerShape(25.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = purpleButton,
+                            disabledContainerColor = purpleButton.copy(alpha = 0.5f)
+                        )
+                    ) {
+                        Text(
+                            text = stringResource(R.string.submit), // Tetap pakai string resource
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
+                        )
+                    }
                 }
             }
         }
