@@ -19,4 +19,6 @@ fun FormFormulirPendaftaran() {
     var jenis by remember { mutableStateOf("") }
     var status by remember { mutableStateOf("") }
 
+    var showDialog by remember { mutableStateOf(false) }
+
 }
