@@ -21,4 +21,7 @@ fun FormFormulirPendaftaran() {
 
     var showDialog by remember { mutableStateOf(false) }
 
+    val gender: List<String> = listOf("Laki-laki", "Perempuan")
+    val statusOptions: List<String> = listOf("Janda", "Lajang", "Duda")
+
 }
