@@ -175,6 +175,34 @@ fun FormFormulirPendaftaran() {
                         }
                     }
                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
+
+                    Column {
+                        Text(
+                            text = "Status Perkawinan",
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                        statusOptions.forEach { item ->
+                            Row(
+                                modifier = Modifier
+                                    .selectable(
+                                        selected = textStatus == item,
+                                        onClick = { textStatus = item }
+                                    )
+                                    .fillMaxWidth(),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                RadioButton(
+                                    selected = textStatus == item,
+                                    onClick = {
+                                        textStatus = item
+                                    }
+                                )
+                                Text(item)
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
                 }
             }
         }
