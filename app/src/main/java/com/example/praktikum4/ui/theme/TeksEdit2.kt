@@ -14,4 +14,9 @@ fun FormFormulirPendaftaran() {
     var textJK by remember { mutableStateOf("") }
     var textStatus by remember { mutableStateOf("") }
 
+    var nama by remember { mutableStateOf("") }
+    var alamat by remember { mutableStateOf("") }
+    var jenis by remember { mutableStateOf("") }
+    var status by remember { mutableStateOf("") }
+
 }
